@@ -85,8 +85,8 @@
   </div>
 
 
-<h6>Water charges</h6>
-<div class="row mb-3">
+<!-- <h6>Water charges</h6> -->
+<!-- <div class="row mb-3">
     <div class="col-md-6">
       <div class="row align-items-center">
         <div class="col-md-4">
@@ -108,10 +108,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   
-  <div class="row mb-3">
+  <!-- <div class="row mb-3">
     <div class="col-md-6">
       <div class="row align-items-center">
         <div class="col-md-4">
@@ -122,7 +122,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <h6>Other charges</h6>
 <div class="row mb-3">

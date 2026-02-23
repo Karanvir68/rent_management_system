@@ -42,25 +42,25 @@ class ApplicationController extends Controller
         }
 
         if ($req->type_of_charge) {
-            $bill += $req->price_of_other;
+            $bill += $req->price_other;
         }
 
-        $insert_data = [
-            'tenant_id' => $req->tenant_id,
+        $data = [
+            'tenant_id' =>    $req->tenant_id,
             'base_charge'     => $req->base_charge,
             'prev_units'      => $prev_units,
             'new_units'       => $new_units,
             'charge'          => $req->charge,
             'type_of_charge'  => $req->type_of_charge,
-            'price_of_other'  => $req->price_of_other,
+            'price_of_other'  => $req->price_other,
             'previous_due'    => $req->previous_due ?? 0,
             'bill_date'       => $req->bill_date,
             'total'           => $bill,
             'status'          => ''
         ];
 
-        ApplicationModel::create($insert_data);
+        ApplicationModel::create($data);
 
-        return view('preview', $insert_data);
+        return view('preview', $data);
     }
 }
