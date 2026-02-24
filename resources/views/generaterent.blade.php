@@ -18,7 +18,7 @@
     </div>
 @endif
 
-<form class="container mt-3" action="{{ 'previewbill' }}" method="post">
+<form class="container mt-3" id="myform" action="{{ 'previewbill' }}" method="post">
   @csrf
 <div class="row mb-3">
     <div class="col-md-6">
@@ -65,6 +65,7 @@
         </div>
         <div class="col-md-6">
           <input type="text" name="new_units" id="new_units" class="form-control">
+          <small id="reading_error" style="color: red; display: none;">New Readings must be less than previous Readings</small>
         </div>
       </div>
     </div>
@@ -83,46 +84,6 @@
       </div>
     </div>
   </div>
-
-
-<!-- <h6>Water charges</h6> -->
-<!-- <div class="row mb-3">
-    <div class="col-md-6">
-      <div class="row align-items-center">
-        <div class="col-md-4">
-          <label for="prev_water_units" class="form-label mb-0">Previous Reading *</label>
-        </div>
-        <div class="col-md-6">
-          <input type="text" name="prev_water_units" id="prev_water_units" class="form-control">
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="row align-items-center">
-        <div class="col-md-4">
-          <label for="new_water_units" class="form-label mb-0">New Reading *</label>
-        </div>
-        <div class="col-md-6">
-          <input type="text" name="new_water_units" id="new_water_units" class="form-control">
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-  
-  <!-- <div class="row mb-3">
-    <div class="col-md-6">
-      <div class="row align-items-center">
-        <div class="col-md-4">
-          <label for="water_charge" class="form-label mb-0">Charge (/Unit) *</label>
-        </div>
-        <div class="col-md-6">
-          <input type="number" name="water_charge" id="water_charge" class="form-control" required>
-        </div>
-      </div>
-    </div>
-  </div> -->
 
   <h6>Other charges</h6>
 <div class="row mb-3">
@@ -164,7 +125,6 @@
   </div>
 
 <div class="row mb-3">
-  <!-- Left field -->
   <div class="col-md-6">
     <div class="row align-items-center">
       <div class="col-md-4">
@@ -176,7 +136,6 @@
     </div>
   </div>
 
-  <!-- Right field -->
   <div class="col-md-6">
     <div class="row align-items-center">
       <div class="col-md-4">
@@ -191,6 +150,33 @@
 <button type="submit" name="preview_bill" class="btn btn-success">Preview</button>
 </form>
 
-
+<script>
   
+  let newunit = document.getElementById('new_units');
+  let prevunit = document.getElementById('prev_units');
+  let js_error = document.getElementById('reading_error');
+  let form = document.getElementById('myform');
+
+  function validatereading(){
+    let newunitvalue = Number(newunit.value);
+    let prevunitvalue = Number(prevunit.value);
+
+    if(newunitvalue < prevunitvalue){
+      js_error.style.display = 'block';
+      return false;
+    }else{
+      js_error.style.display = 'none';
+      return true;
+    }
+  }
+
+  newunit.addEventListener('input', validatereading);
+  form.addEventListener('submit', (e)=>{
+     if(!validatereading()){
+      e.preventDefault();
+     }
+  })
+
+
+</script>
 @endsection
