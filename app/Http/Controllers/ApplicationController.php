@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ApplicationModel;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class ApplicationController extends Controller
 {
@@ -37,6 +39,8 @@ class ApplicationController extends Controller
 
         $bill = $diff_units * $req->charge;
 
+        $bill += $req->base_charge;
+
         if ($req->previous_due > 0) {
             $bill += $req->previous_due;
         }
@@ -59,8 +63,14 @@ class ApplicationController extends Controller
             'status'          => ''
         ];
 
-        ApplicationModel::create($data);
+        //dd($data);
 
-        return view('preview', $data);
+        //ApplicationModel::create($data);
+       
+        $pdf = Pdf::loadView('invoice',$data);
+
+        return $pdf->stream('invoice.pdf');
+
+        //return view('preview', $data);
     }
 }
