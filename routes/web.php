@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\TenantController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,7 @@ Route::get('/', function () {
 Route::get('/',[ApplicationController::class,'rent_details']);
 Route::get('/home',[ApplicationController::class,'home'])->name('home');
 Route::get('generate',[ApplicationController::class,'generate'])->name('generate');
+
+Route::get('tenants', [TenantController::class, 'viewTenants'])->name('tenants');
 
 Route::post('previewbill',[ApplicationController::class,'Preview_Bill']);

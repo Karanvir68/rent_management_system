@@ -19,13 +19,13 @@
             <a href="{{'/rent'}}" class="nav-link">Dashboard</a>
         </li>
         <li>
-            <a href="#" class="nav-link">Tenants</a>
+            <a href="{{'tenants'}}" class="nav-link">Tenants</a>
         </li>
         <li>
-            <a href="{{'generate'}}" class="nav-link">Generate</a>
+            <a href="{{'generate'}}" class="nav-link">Bill Details</a>
         </li>
         <li>
-            <a href="#" class="nav-link">Logout</a>
+            <a href="" class="nav-link">Logout</a>
         </li>
     </ul>
 </nav>
