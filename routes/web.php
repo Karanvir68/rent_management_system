@@ -23,6 +23,13 @@ Route::get('/',[ApplicationController::class,'rent_details']);
 Route::get('/home',[ApplicationController::class,'home'])->name('home');
 Route::get('generate',[ApplicationController::class,'generate'])->name('generate');
 
+
 Route::get('tenants', [TenantController::class, 'viewTenants'])->name('tenants');
+Route::get('edit/tenants/{id}',[TenantController::class,'editTenant'])->name('edit.tenant');
+Route::put('updateTenants/{id}',[TenantController::class,'updateTenant'])->name('update.tenants');
+Route::get('createTenants',[TenantController::class,'createTenant'])->name('create.tenants');
+Route::post('addTenants',[TenantController::class,'addTenant'])->name('add.tenants');
+
+
 
 Route::post('previewbill',[ApplicationController::class,'Preview_Bill']);

@@ -7,8 +7,13 @@
 <div class="container mt-4">
 
 <h2 class="mb-3">Manage Tenants</h2>
+<div>
+    @if(session('success'))
+    <div class="alert alert-success">{{session('success')}}</div>
+    @endif
+</div>
 <div class="text-end mb-3">
-<a href="" class="btn btn-success mb-3">
+<a href="{{route('create.tenants')}}" class="btn btn-success mb-3">
     <i class="fa fa-plus"></i> Add Tenant
 </a>
 </div>
@@ -39,7 +44,7 @@
     <td>{{ date('d/m/Y', strtotime($row->started_on)) }}</td>
     <td>
 
-        <a href="" class="btn btn-sm btn-primary">
+        <a href="{{route('edit.tenant',$row->id)}}" class="btn btn-sm btn-primary">
             <i class="fa fa-pencil"></i>
         </a>
 

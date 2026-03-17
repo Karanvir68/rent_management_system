@@ -10,4 +10,12 @@ class Tenants extends Model
     use HasFactory;
 
     protected $table = 'tenants';
+
+    //public $timestamps = false;
+
+    public $fillable = [
+        'name',
+        'mobile',
+        'base_rent'
+    ];
 }

@@ -10,10 +10,13 @@
 .nav-link{
     color: #000000;
 }
+li{
+    font-size: 18px;
+}
     </style>
 <!-- resources/views/layouts/sidebar.blade.php -->
 <nav class="d-flex flex-column bg-light p-3" style="width: 200px; min-height: 100vh;">
-    <a href="#" class="navbar-brand mb-4">Rentage</a>
+    <a href="#" class="navbar-brand mb-4"><strong>RENTAGE</strong></a>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
             <a href="{{'/rent'}}" class="nav-link">Dashboard</a>
