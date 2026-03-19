@@ -73,4 +73,10 @@ class ApplicationController extends Controller
 
         //return view('preview', $data);
     }
+
+    public function bill_details(){
+        $bills = ApplicationModel::all();
+
+        return view('billdetails',['bills' => $bills]);
+    }
 }

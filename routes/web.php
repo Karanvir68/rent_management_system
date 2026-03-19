@@ -22,6 +22,8 @@ Route::get('/', function () {
 Route::get('/',[ApplicationController::class,'rent_details']);
 Route::get('/home',[ApplicationController::class,'home'])->name('home');
 Route::get('generate',[ApplicationController::class,'generate'])->name('generate');
+Route::get('billdetails',[ApplicationController::class,'bill_details'])->name('billdetails');
+
 
 
 Route::get('tenants', [TenantController::class, 'viewTenants'])->name('tenants');
@@ -29,6 +31,7 @@ Route::get('edit/tenants/{id}',[TenantController::class,'editTenant'])->name('ed
 Route::put('updateTenants/{id}',[TenantController::class,'updateTenant'])->name('update.tenants');
 Route::get('createTenants',[TenantController::class,'createTenant'])->name('create.tenants');
 Route::post('addTenants',[TenantController::class,'addTenant'])->name('add.tenants');
+Route::delete('deleteTenants/{id}',[TenantController::class,'deleteTenant'])->name('delete.tenant');
 
 
 

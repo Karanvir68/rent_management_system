@@ -25,7 +25,12 @@ li{
             <a href="{{'tenants'}}" class="nav-link">Tenants</a>
         </li>
         <li>
-            <a href="{{'generate'}}" class="nav-link">Bill Details</a>
+            <a href="{{'billdetails'}}" class="nav-link">Bill Details</a>
+        </li>
+        <li>
+            <a href="{{'generate'}}" class="nav-link">
+                Generate Bill
+            </a>
         </li>
         <li>
             <a href="" class="nav-link">Logout</a>

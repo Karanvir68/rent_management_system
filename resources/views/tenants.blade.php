@@ -41,7 +41,7 @@
     <td>{{ $row->name }}</td>
     <td>{{ $row->mobile }}</td>
     <td>₹{{ $row->base_rent }}</td>
-    <td>{{ date('d/m/Y', strtotime($row->started_on)) }}</td>
+    <td>{{ date('d/m/Y', strtotime($row->created_at)) }}</td>
     <td>
 
         <a href="{{route('edit.tenant',$row->id)}}" class="btn btn-sm btn-primary">
@@ -52,9 +52,13 @@
             <i class="fa fa-eye"></i>
         </a>
 
-        <a href="" class="btn btn-sm btn-danger">
-            <i class="fa fa-trash"></i>
-        </a>
+        <form action="{{ route('delete.tenant', $row->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this tenant?');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm btn-danger">
+                <i class="fa fa-trash"></i>
+            </button>
+        </form>
 
     </td>
 </tr>

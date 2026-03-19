@@ -58,4 +58,10 @@ class TenantController extends Controller
        return redirect('tenants')->with('success', 'New Tenant Added successfully');
 
     }
+
+    public function deleteTenant($id){
+        $tenant = Tenants::findOrFail($id);
+        $tenant->delete();
+        return redirect('tenants')->with('success', 'Tenant deleted successfully');
+    }
 }
