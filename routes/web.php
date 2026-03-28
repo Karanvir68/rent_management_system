@@ -23,6 +23,8 @@ Route::get('/',[ApplicationController::class,'rent_details']);
 Route::get('/home',[ApplicationController::class,'home'])->name('home');
 Route::get('generate',[ApplicationController::class,'generate'])->name('generate');
 Route::get('billdetails',[ApplicationController::class,'bill_details'])->name('billdetails');
+Route::get('edit/bill/{id}',[ApplicationController::class,'editBill'])->name('edit.bill');
+Route::put('updatebill/{id}',[ApplicationController::class,'updateBill'])->name('update.bill');
 
 
 

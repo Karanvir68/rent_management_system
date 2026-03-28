@@ -51,12 +51,9 @@
                                 </span>
                             </td>
                             <td>
-                                <a href="{{ route('edit.tenant', $row->id) }}" class="btn btn-sm btn-primary" title="Edit">
+                                <a href="{{ route('edit.bill', $row->id) }}" class="btn btn-sm btn-primary" title="Edit">
                                     <i class="fa fa-pencil"></i>
                                 </a>
-                                <button type="button" class="btn btn-sm btn-info text-white" title="View" data-bs-toggle="modal" data-bs-target="#billModal" data-bill-id="{{ $row->id }}" data-base-charge="{{ $row->base_charge }}" data-prev-units="{{ $row->prev_units }}" data-new-units="{{ $row->new_units }}" data-total="{{ $row->total }}" data-bill-date="{{ $row->bill_date }}" data-status="{{ $row->status }}">
-                                    <i class="fa fa-eye"></i>
-                                </button>
                             </td>
                         </tr>
                         @endforeach
@@ -72,55 +69,6 @@
     </div>
 </div>
 
-<!-- Bill Details Modal -->
-<div class="modal fade" id="billModal" tabindex="-1" aria-labelledby="billModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #e8ddf5 !important;">
-                <h5 class="modal-title" id="billModalLabel">Bill Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table table-borderless">
-                    <tr>
-                        <th>Bill ID:</th>
-                        <td id="modalBillId">-</td>
-                    </tr>
-                    <tr>
-                        <th>Base Charge:</th>
-                        <td id="modalBaseCharge">-</td>
-                    </tr>
-                    <tr>
-                        <th>Previous Units:</th>
-                        <td id="modalPrevUnits">-</td>
-                    </tr>
-                    <tr>
-                        <th>New Units:</th>
-                        <td id="modalNewUnits">-</td>
-                    </tr>
-                    <tr>
-                        <th>Total Amount:</th>
-                        <td id="modalTotal">-</td>
-                    </tr>
-                    <tr>
-                        <th>Bill Date:</th>
-                        <td id="modalBillDate">-</td>
-                    </tr>
-                    <tr>
-                        <th>Status:</th>
-                        <td><span id="modalStatus" class="badge">-</span></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success" id="markPaidBtn">
-                    <i class="fa fa-check"></i> Mark as Paid
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 

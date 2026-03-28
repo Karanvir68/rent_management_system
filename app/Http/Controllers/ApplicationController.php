@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ApplicationModel;
 use Barryvdh\DomPDF\Facade\Pdf;
-
+use Illuminate\Support\Facades\App;
+use Symfony\Component\Console\Application;
 
 class ApplicationController extends Controller
 {
@@ -78,5 +79,31 @@ class ApplicationController extends Controller
         $bills = ApplicationModel::all();
 
         return view('billdetails',['bills' => $bills]);
+    }
+
+    public function editBill($id){
+
+        $bill = ApplicationModel::FindorFail($id);
+
+        return view('editbill',['bill'=>$bill]);
+    }
+
+    public function updateBill(Request $req, $id){
+
+    $req->validate([
+       'previous_due' => 'required',
+       'status' => 'required'
+    ]);
+
+       $bill = ApplicationModel::FindorFail($id);
+
+       
+
+       $bill->update([
+        $bill->status = $req->status,
+        $bill->previous_due = $req->previous_due
+       ]);
+
+       return redirect('billdetails')->with('success','Bill updated successfuly');
     }
 }
