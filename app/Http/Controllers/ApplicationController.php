@@ -28,9 +28,8 @@ class ApplicationController extends Controller
             'prev_units'     => 'required|numeric',
             'new_units'      => 'required|numeric',
             'charge'         => 'required|numeric|min:0',
-            'type_of_charge' => 'required|string|max:255',
             'previous_due'   => 'nullable|numeric|min:0',
-            'bill_date'      => 'required|date',
+            'bill_date'      => 'required|date'
         ]);
 
         $prev_units = $req->prev_units;
@@ -67,10 +66,14 @@ class ApplicationController extends Controller
         //dd($data);
 
         //ApplicationModel::create($data);
+
+        $data['sub_total'] = $bill - ($req->base_charge);
+
+        $data['electricity_bill'] = $diff_units * $req->charge;
        
         $pdf = Pdf::loadView('invoice',$data);
 
-        return $pdf->stream('invoice.pdf');
+        return $pdf->stream('invoice_'.date('M').'.pdf');
 
         //return view('preview', $data);
     }

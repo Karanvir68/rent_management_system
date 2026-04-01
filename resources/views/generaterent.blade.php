@@ -93,7 +93,7 @@
           <label for="type_of_charge" class="form-label mb-0">Type Of Charge *</label>
         </div>
         <div class="col-md-6">
-          <input type="text" name="type_of_charge" id="type_of_charge" class="form-control" required>
+          <input type="text" name="type_of_charge" id="type_of_charge" class="form-control" >
         </div>
       </div>
     </div>
@@ -104,7 +104,7 @@
           <label for="price_other" class="form-label mb-0">Price *</label>
         </div>
         <div class="col-md-6">
-          <input type="text" name="price_other" id="price_other" class="form-control" required>
+          <input type="text" name="price_other" id="price_other" class="form-control">
         </div>
       </div>
     </div>
@@ -118,7 +118,7 @@
           <label for="quantity_other" class="form-label mb-0">Quantity</label>
         </div>
         <div class="col-md-6">
-          <input type="number" name="quantity_other" id="quantity_other" class="form-control" required>
+          <input type="number" name="quantity_other" id="quantity_other" class="form-control">
         </div>
       </div>
     </div>

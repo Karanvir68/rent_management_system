@@ -114,9 +114,9 @@ td,th{
 <div class="header">
     <table style="width:100%">
         <tr>
-            <td class="title">Bill</td>
+            <td class="title">Rent Invoice</td>
             <td class="date">
-                <strong>Date:</strong> {{ $bill_date }}
+                <strong>Date:</strong> {{ date('d/m/Y',strtotime($bill_date)) }}
             </td>
         </tr>
     </table>
@@ -126,7 +126,7 @@ td,th{
 <!-- TENANT -->
 <div class="tenant">
     <strong>Bill To</strong><br>
-    Mr. Simranjeet Singh
+    Mr. Kuber 
 </div>
 
 
@@ -134,10 +134,7 @@ td,th{
 <div class="section-title">Rent & Electricity Details</div>
 
 <table class="table">
-<tr>
-    <th width="50%">Base Rent</th>
-    <td>₹ {{ number_format($base_charge,2) }}</td>
-</tr>
+
 
 <tr class="highlight">
     <th>Previous Meter Units</th>
@@ -149,14 +146,25 @@ td,th{
     <td>{{ $new_units }}</td>
 </tr>
 
+<tr>
+    <th>Units consumed</th>
+    <td>{{ $new_units - $prev_units}}</td>
+</tr>
+
 <tr class="highlight">
-    <th>Electricity Charge</th>
-    <td>₹ {{ number_format($charge,2) }}</td>
+    <th>Charge</th>
+    <td>{{ number_format($charge,2) }}/Unit</td>
+</tr>
+
+<tr class="highlight">
+    <th style="text-align: right;">Electricity Bill</th>
+    <td style="text-align: right;">₹ {{ number_format($electricity_bill,2) }}</td>
 </tr>
 </table>
 
 
 <!-- OTHER CHARGES -->
+@if(!empty($other_charge))
 <div class="section-title">Other Charges</div>
 
 <table class="table">
@@ -169,6 +177,7 @@ td,th{
     <th>Amount</th>
     <td>₹ {{ number_format($price_of_other,2) }}</td>
 </tr>
+@endif
 </table>
 
 
@@ -177,7 +186,11 @@ td,th{
 
 <table class="table">
 <tr>
-    <th width="50%">Previous Due</th>
+    <th style="text-align: right;" width="50%">Base Rent</th>
+    <td style="text-align: right;">₹ {{ number_format($base_charge,2) }}</td>
+</tr>
+<tr>
+    <th style="text-align: right;" width="50%">Previous Due</th>
     <td style="text-align:right;">
         ₹ {{ number_format($previous_due,2) }}
     </td>
