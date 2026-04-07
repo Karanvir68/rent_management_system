@@ -34,7 +34,7 @@
 
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Due Amount</label>
-                        <input type="text" name="previous_due" class="form-control" value="{{ $bill->previous_due }}" required>
+                        <input type="text" name="current_due" class="form-control" value="{{ $bill->current_due }}" required>
                     </div>
 
                     
@@ -49,6 +49,7 @@
                             <option value="">-- Select action --</option>
                             <option value="Pending" {{ $bill->status == 'Pending' ? 'selected' : ''}}>Pending</option>
                             <option value="Paid" {{ $bill->status == 'Paid' ? 'selected' : ''}}>Paid</option>
+                            <option value="Partial" {{ $bill->status == 'Partial' ? 'selected' : ''}}>Partial</option>
 
                         </select>
 </div>

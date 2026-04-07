@@ -94,7 +94,7 @@ class ApplicationController extends Controller
     public function updateBill(Request $req, $id){
 
     $req->validate([
-       'previous_due' => 'required',
+       'current_due' => 'required',
        'status' => 'required'
     ]);
 
@@ -104,7 +104,7 @@ class ApplicationController extends Controller
 
        $bill->update([
         $bill->status = $req->status,
-        $bill->previous_due = $req->previous_due
+        $bill->current_due = $req->current_due
        ]);
 
        return redirect('billdetails')->with('success','Bill updated successfuly');
