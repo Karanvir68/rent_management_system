@@ -26,7 +26,7 @@ Route::get('billdetails',[ApplicationController::class,'bill_details'])->name('b
 Route::get('edit/bill/{id}',[ApplicationController::class,'editBill'])->name('edit.bill');
 Route::put('updatebill/{id}',[ApplicationController::class,'updateBill'])->name('update.bill');
 
-
+Route::get('get-basecharge/{id}', [TenantController::class,'get_basecharge'])->name('base_charge');
 
 Route::get('tenants', [TenantController::class, 'viewTenants'])->name('tenants');
 Route::get('edit/tenants/{id}',[TenantController::class,'editTenant'])->name('edit.tenant');

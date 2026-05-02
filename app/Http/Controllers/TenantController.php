@@ -64,4 +64,14 @@ class TenantController extends Controller
         $tenant->delete();
         return redirect('tenants')->with('success', 'Tenant deleted successfully');
     }
+
+    public function get_basecharge($id){
+
+    $tenants = Tenants::FindorFail($id);
+
+    return response()->json(
+        ['base_charge' => $tenants->base_rent]
+    );
+
+    }
 }

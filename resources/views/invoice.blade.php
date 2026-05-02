@@ -126,7 +126,7 @@ td,th{
 <!-- TENANT -->
 <div class="tenant">
     <strong>Bill To</strong><br>
-    Mr. Kuber 
+    Mr. {{ $tenant_name }} 
 </div>
 
 
@@ -164,7 +164,7 @@ td,th{
 
 
 <!-- OTHER CHARGES -->
-@if(!empty($other_charge))
+@if(!empty($price_of_other > 0))
 <div class="section-title">Other Charges</div>
 
 <table class="table">

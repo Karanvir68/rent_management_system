@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ApplicationModel;
+use App\Models\Tenants;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\App;
 use Symfony\Component\Console\Application;
@@ -18,7 +19,8 @@ class ApplicationController extends Controller
 
     public function generate()
     {
-        return view('generaterent');
+        $tenants = Tenants::all();
+        return view('generaterent',compact('tenants'));
     }
 
     public function Preview_Bill(Request $req)
@@ -65,7 +67,11 @@ class ApplicationController extends Controller
 
         //dd($data);
 
-        //ApplicationModel::create($data);
+        ApplicationModel::create($data);
+
+        $tenants = Tenants::findOrFail($req->tenant_id);
+
+        $data['tenant_name'] =  trim($tenants->name);
 
         $data['sub_total'] = $bill - ($req->base_charge);
 
@@ -73,7 +79,7 @@ class ApplicationController extends Controller
        
         $pdf = Pdf::loadView('invoice',$data);
 
-        return $pdf->stream('invoice_'.date('M').'.pdf');
+        return $pdf->stream($data['tenant_name'] .'_'.date('M').'.pdf');
 
         //return view('preview', $data);
     }

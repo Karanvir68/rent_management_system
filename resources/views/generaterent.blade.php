@@ -40,15 +40,16 @@
         <div class="row g-3">
           <div class="col-md-6">
             <label class="form-label small text-muted">Tenant <span class="text-danger">*</span></label>
-            <select class="form-select form-select-sm" name="tenant_id">
+            <select class="form-select form-select-sm" id="tenant_id" name="tenant_id">
               <option>— select tenant —</option>
-              <option value="1">Simranjeet</option>
-              <option value="2">Kuber</option>
+              @foreach($tenants as $tenant)
+              <option value="{{ $tenant->id }}">{{ $tenant->name}}</option>
+              @endforeach
             </select>
           </div>
           <div class="col-md-6">
             <label class="form-label small text-muted">Base charge <span class="text-danger">*</span></label>
-            <input type="text" name="base_charge" class="form-control form-control-sm" placeholder="e.g. 500">
+            <input type="text" name="base_charge" id="base_charge" class="form-control form-control-sm" placeholder="e.g. 500">
           </div>
         </div>
       </div>
@@ -140,5 +141,27 @@
   newUnit.addEventListener('input', validateReading);
   prevUnit.addEventListener('input', validateReading);
   form.addEventListener('submit', e => { if (!validateReading()) e.preventDefault(); });
+
+  let tenant = document.getElementById('tenant_id');
+  let basecharge =  document.getElementById('base_charge');
+
+  tenant.addEventListener('change',function(){
+
+  let tenant_id = tenant.value;
+
+      if(!tenant_id){
+        basecharge.value = '';
+        return;
+      }
+
+      fetch(`get-basecharge/${tenant_id}`)
+      .then(response => response.json())
+      .then(data=>{
+        basecharge.value = data.base_charge;
+      })
+      .catch(error =>{
+        console.log('Error: ', error);
+      });
+  })
 </script>
 @endsection
