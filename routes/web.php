@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\TenantController;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::get('edit/bill/{id}',[ApplicationController::class,'editBill'])->name('ed
 Route::put('updatebill/{id}',[ApplicationController::class,'updateBill'])->name('update.bill');
 
 Route::get('get-basecharge/{id}', [TenantController::class,'get_basecharge'])->name('base_charge');
+Route::get('get_tenantDetails/{id}',[TenantController::class,'get_tenantDetails']);
 
 Route::get('tenants', [TenantController::class, 'viewTenants'])->name('tenants');
 Route::get('edit/tenants/{id}',[TenantController::class,'editTenant'])->name('edit.tenant');

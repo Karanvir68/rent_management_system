@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ApplicationModel;
 use App\Models\Tenants;
 use Illuminate\Http\Request;
 
@@ -73,5 +74,21 @@ class TenantController extends Controller
         ['base_charge' => $tenants->base_rent]
     );
 
+    }
+
+    public function get_tenantDetails($id){
+
+    $prev_rent_details = ApplicationModel::where('tenant_id', $id)->latest('id')->first();
+
+     if (!$prev_rent_details) {
+        return response()->json([
+            'message' => 'No record found'
+        ], 404);
+    }
+
+    return response()->json(
+        ['prev_units' => $prev_rent_details->new_units]
+    );    
+         
     }
 }

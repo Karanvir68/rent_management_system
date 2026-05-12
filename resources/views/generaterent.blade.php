@@ -121,6 +121,7 @@
 </div>
 
 <script>
+  //new units validation
   const newUnit = document.getElementById('new_units');
   const prevUnit = document.getElementById('prev_units');
   const jsError = document.getElementById('reading_error');
@@ -142,8 +143,11 @@
   prevUnit.addEventListener('input', validateReading);
   form.addEventListener('submit', e => { if (!validateReading()) e.preventDefault(); });
 
+  //getting base charge from tenant_id
   let tenant = document.getElementById('tenant_id');
   let basecharge =  document.getElementById('base_charge');
+
+  let prev_units = document.getElementById('prev_units');
 
   tenant.addEventListener('change',function(){
 
@@ -162,6 +166,22 @@
       .catch(error =>{
         console.log('Error: ', error);
       });
+
+      fetch(`get_tenantDetails/${tenant_id}`)
+      .then(response => response.json())
+      .then(data => {
+         prev_units.value = data.prev_units;
   })
+  .catch(error =>{
+      console.log('Prev units error: ', error);
+  })
+  })
+
+
+//getting other details from tenant_id
+
+
+
+
 </script>
 @endsection
